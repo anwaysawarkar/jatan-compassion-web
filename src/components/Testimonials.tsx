@@ -2,6 +2,13 @@
 import React, { useState } from 'react';
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
+import { 
+  Carousel, 
+  CarouselContent, 
+  CarouselItem, 
+  CarouselPrevious, 
+  CarouselNext 
+} from "@/components/ui/carousel";
 
 interface Testimonial {
   id: number;
@@ -56,9 +63,9 @@ const Testimonials: React.FC = () => {
     : testimonials.filter(t => t.category === filter);
 
   return (
-    <section id="testimonials" className="section-padding">
+    <section id="testimonials" className="section-padding bg-gradient-to-b from-white to-jatan-cream/30">
       <div className="container-custom">
-        <h2 className="section-heading">Voices of Impact</h2>
+        <h2 className="section-heading text-jatan-darkBlue">Voices of Impact</h2>
         
         <div className="flex justify-center space-x-2 mb-8">
           <Button 
@@ -91,7 +98,8 @@ const Testimonials: React.FC = () => {
           </Button>
         </div>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Desktop view: Grid */}
+        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredTestimonials.map((testimonial, index) => (
             <div 
               key={testimonial.id}
@@ -109,6 +117,31 @@ const Testimonials: React.FC = () => {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Mobile view: Carousel */}
+        <div className="md:hidden w-full">
+          <Carousel className="w-full">
+            <CarouselContent>
+              {filteredTestimonials.map((testimonial) => (
+                <CarouselItem key={testimonial.id}>
+                  <div className="bg-white p-6 rounded-lg shadow-md border-l-4 border-jatan-blue h-full">
+                    <div className="relative mb-4">
+                      <div className="text-5xl text-jatan-orange/20 absolute -top-3 -left-2">"</div>
+                      <p className="text-gray-700 relative z-10">{testimonial.content}</p>
+                    </div>
+                    <Separator className="my-4" />
+                    <div>
+                      <p className="font-semibold">{testimonial.name}</p>
+                      <p className="text-sm text-gray-500">{testimonial.role}</p>
+                    </div>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="left-2" />
+            <CarouselNext className="right-2" />
+          </Carousel>
         </div>
       </div>
     </section>

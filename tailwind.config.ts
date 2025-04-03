@@ -58,11 +58,14 @@ export default {
 					foreground: 'hsl(var(--card-foreground))'
 				},
 				jatan: {
-					orange: "#F97316",
-					yellow: "#FBBF24",
-					blue: "#0EA5E9",
-					darkBlue: "#0369A1",
-					cream: "#FEF7CD"
+					orange: "#E74C3C",
+					yellow: "#F1C40F",
+					blue: "#3498DB",
+					darkBlue: "#2980B9",
+					cream: "#FEF7CD",
+					teal: "#1ABC9C",
+					purple: "#9B59B6",
+					green: "#2ECC71"
 				}
 			},
 			borderRadius: {

@@ -4,19 +4,19 @@ import { Button } from "@/components/ui/button";
 
 const Hero: React.FC = () => {
   return (
-    <div className="relative bg-gradient-to-r from-jatan-orange/10 to-jatan-blue/10 pt-24 pb-32">
+    <div className="relative bg-gradient-to-r from-jatan-teal/10 to-jatan-blue/10 pt-24 pb-32">
       <div className="container-custom">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="animate-fade-in">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              Empowering Communities, <span className="gradient-text">Transforming Lives</span>
+              Empowering Communities, <span className="bg-gradient-to-r from-jatan-orange to-jatan-purple text-transparent bg-clip-text">Transforming Lives</span>
             </h1>
             <p className="text-lg mb-8 text-gray-700">
               JATAN is dedicated to uplifting underprivileged communities through quality education for slum children, 
               vocational weaving classes for women, and essential support for poor households.
             </p>
             <div className="flex flex-wrap gap-4">
-              <Button size="lg" className="bg-jatan-orange hover:bg-jatan-yellow text-white">
+              <Button size="lg" className="bg-jatan-orange hover:bg-jatan-orange/90 text-white">
                 Get Involved
               </Button>
               <Button size="lg" variant="outline" className="border-jatan-orange text-jatan-orange hover:bg-jatan-orange/10">
@@ -25,14 +25,14 @@ const Hero: React.FC = () => {
             </div>
           </div>
           <div className="relative mx-auto max-w-lg animate-scale-in">
-            <div className="w-full h-72 md:h-96 bg-jatan-blue/20 rounded-lg relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-r from-jatan-orange/30 to-jatan-blue/30"></div>
+            <div className="w-full h-72 md:h-96 bg-gradient-to-br from-jatan-blue to-jatan-teal/70 rounded-lg relative overflow-hidden shadow-xl">
+              <div className="absolute inset-0 bg-gradient-to-r from-jatan-orange/30 to-jatan-purple/30 mix-blend-overlay"></div>
               <div className="absolute inset-0 flex items-center justify-center text-white">
                 <span className="text-xl font-semibold text-center px-4">Image: Children learning at JATAN center</span>
               </div>
             </div>
-            <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-jatan-yellow rounded-full"></div>
-            <div className="absolute -top-4 -left-4 w-16 h-16 bg-jatan-orange rounded-full"></div>
+            <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-jatan-yellow rounded-full shadow-lg"></div>
+            <div className="absolute -top-4 -left-4 w-16 h-16 bg-jatan-orange rounded-full shadow-lg"></div>
           </div>
         </div>
       </div>
