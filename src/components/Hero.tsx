@@ -1,41 +1,70 @@
-
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button } from "@/components/ui/button";
 
+
+
+
 const Hero: React.FC = () => {
+  const [currentImage, setCurrentImage] = useState(0);
+  const images = [
+    "src/images/image1.png",
+    "src/images/image2.png",
+    "src/images/image3.png",
+    "src/images/image4.png"
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImage((prev) => (prev + 1) % images.length);
+    }, 4000); // 4 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="relative bg-gradient-to-r from-jatan-teal/10 to-jatan-blue/10 pt-24 pb-32">
       <div className="container-custom">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
           <div className="animate-fade-in">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              Empowering Communities, <span className="bg-gradient-to-r from-jatan-orange to-jatan-purple text-transparent bg-clip-text">Transforming Lives</span>
+            Inspired by <br /><span className="bg-gradient-to-r from-jatan-orange to-jatan-purple text-transparent bg-clip-text">Individual Social Responsibility</span>
             </h1>
             <p className="text-lg mb-8 text-gray-700">
-              JATAN is dedicated to uplifting underprivileged communities through quality education for slum children, 
-              vocational weaving classes for women, and essential support for poor households.
+            JATAN empowers women and children from underprivileged communities through initiatives like stitching (silai) classes for women,
+            remedial education for students from Class 1 to 9, spoken English and personality development training, 
+            and computer education through an e-learning center for both women and children.
             </p>
             <div className="flex flex-wrap gap-4">
-              <Button size="lg" className="bg-jatan-orange hover:bg-jatan-orange/90 text-white">
-                Get Involved
-              </Button>
-              <Button size="lg" variant="outline" className="border-jatan-orange text-jatan-orange hover:bg-jatan-orange/10">
-                Learn More
-              </Button>
+            <a href="#volunteer">
+                <Button size="lg" className="bg-jatan-orange hover:bg-jatan-orange/90 text-white">
+                    Get Involved
+                </Button>
+            </a>
+
+            <a href="#about">
+             <Button size="lg" variant="outline" className="border-jatan-orange text-jatan-orange hover:bg-jatan-orange/10">
+               Learn More
+             </Button>
+           </a>
+
             </div>
           </div>
-          <div className="relative mx-auto max-w-lg animate-scale-in">
-            <div className="w-full h-72 md:h-96 bg-gradient-to-br from-jatan-blue to-jatan-teal/70 rounded-lg relative overflow-hidden shadow-xl">
+
+          {/* Compact Carousel Container */}
+          <div className="relative w-full h-[280px] sm:h-[350px] md:h-[400px] lg:h-[450px] mx-auto">
+            <div className="w-full h-full rounded-2xl overflow-hidden shadow-2xl relative bg-gray-50">
+              <img
+                src={images[currentImage]}
+                alt="At JATAN center"
+                className="object-cover w-full h-full transition-opacity duration-1000"
+                style={{ objectPosition: 'center center' }}
+              />
               <div className="absolute inset-0 bg-gradient-to-r from-jatan-orange/30 to-jatan-purple/30 mix-blend-overlay"></div>
-              <div className="absolute inset-0 flex items-center justify-center text-white">
-                <span className="text-xl font-semibold text-center px-4">Image: Children learning at JATAN center</span>
-              </div>
             </div>
-            <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-jatan-yellow rounded-full shadow-lg"></div>
-            <div className="absolute -top-4 -left-4 w-16 h-16 bg-jatan-orange rounded-full shadow-lg"></div>
           </div>
         </div>
       </div>
+
       <div className="absolute bottom-0 left-0 right-0 h-16 bg-white" style={{ clipPath: 'polygon(0 100%, 100% 100%, 100% 0)' }}></div>
     </div>
   );

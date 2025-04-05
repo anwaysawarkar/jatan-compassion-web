@@ -14,21 +14,21 @@ const Programs: React.FC = () => {
     {
       icon: <Book className="h-10 w-10 text-jatan-orange" />,
       title: 'Education for Slum Children',
-      description: 'Providing quality education, school supplies, and mentorship to children from slum areas, helping them build a foundation for a brighter future.',
+      description: 'Providing remedial educational assistance to children from slum communities, focusing on strengthening foundational learning, bridging academic gaps, and building confidence through inclusive support and mentorship.',
       color: 'border-jatan-orange',
       bgColor: 'from-jatan-orange/5 to-jatan-orange/10'
     },
     {
       icon: <Users className="h-10 w-10 text-jatan-blue" />,
-      title: 'Weaving Classes for Women',
-      description: 'Empowering women through vocational training in traditional and modern weaving techniques, creating pathways to financial independence.',
+      title: 'Silai Classes for Women',
+      description: 'Providing basic stitching and tailoring training to women from underprivileged communities, helping them gain practical skills for income generation and self-reliance.',
       color: 'border-jatan-blue',
       bgColor: 'from-jatan-blue/5 to-jatan-blue/10'
     },
     {
       icon: <Home className="h-10 w-10 text-jatan-teal" />,
-      title: 'Household Support',
-      description: 'Providing essential supplies, healthcare assistance, and guidance to struggling households to improve their living conditions and well-being.',
+      title: 'E-classes for Women & Children',
+      description: 'Providing access to digital learning for women and children from underserved communities, helping them continue their education and build basic computer skills in a supportive environment.',
       color: 'border-jatan-teal',
       bgColor: 'from-jatan-teal/5 to-jatan-teal/10'
     },

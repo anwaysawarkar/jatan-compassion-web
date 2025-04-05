@@ -11,12 +11,13 @@ const About: React.FC = () => {
             <div className="bg-gray-100 p-6 rounded-lg shadow-inner">
               <h3 className="text-2xl font-semibold mb-4 text-jatan-darkBlue">Our Mission</h3>
               <p className="mb-4 text-gray-700">
-                JATAN was founded with a vision to create sustainable development within underprivileged communities
-                by providing quality education, skill development, and essential support.
+              JATAN, which means effort, is dedicated to empowering underprivileged women and children by promoting the spirit of Individual Social Responsibility.
+              We believe that meaningful change begins with small, personal efforts that collectively uplift communities.
               </p>
               <p className="text-gray-700">
-                We believe in empowering individuals to break the cycle of poverty through knowledge, skills,
-                and community support networks that foster both personal and societal growth.
+              Through free, community-focused initiatives in education, skill development, and personal growth, 
+              JATAN emphasizes the power of consistent effort in enabling individuals to become self-reliant, 
+              confident, and active contributors to a more equitable society.
               </p>
             </div>
           </div>
@@ -24,13 +25,12 @@ const About: React.FC = () => {
             <div className="bg-gray-100 p-6 rounded-lg shadow-inner">
               <h3 className="text-2xl font-semibold mb-4 text-jatan-darkBlue">Our Story</h3>
               <p className="mb-4 text-gray-700">
-                Started in 2010 by a group of passionate social workers, JATAN began as a small initiative
-                teaching 15 children in a makeshift classroom. Today, we've grown into a multi-faceted NGO
-                serving thousands of beneficiaries across multiple communities.
+              JATAN was born from the idea of Individual Social Responsibility (ISR), first explored by a group of management students at BIMTECH, Noida, during their CSR lessons. Inspired by the belief that meaningful change begins with personal effort, they transformed a classroom thought into real-world action.
               </p>
               <p className="text-gray-700">
-                Our journey has been one of continuous growth, learning, and deep community engagement,
-                always guided by our core values of compassion, integrity, and sustainable impact.
+              On 1st September 2008, JATAN’s Nagpur chapter was founded, with generous support from Mr. Milan Agnihotri in memory of his grandmother. The initiative was encouraged at its inception by Dr. H. Chaturvedi, Director of BIMTECH, whose words helped spark the journey.
+
+Today, JATAN continues to stand for “the effort” — empowering underprivileged women and children through education, life skills, and community-led change.
               </p>
             </div>
           </div>

@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import Material from './pages/Material';
 import { TooltipProvider } from "@/components/ui/tooltip";
 
 const queryClient = new QueryClient();
@@ -17,7 +18,7 @@ const App = () => (
         <Sonner />
         <Routes>
           <Route path="/" element={<Index />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="/material" element={<Material />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </TooltipProvider>

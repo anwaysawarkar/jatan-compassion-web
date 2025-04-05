@@ -72,10 +72,10 @@ const Impact: React.FC = () => {
       <div className="container-custom">
         <h2 className="section-heading">Our Impact</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-          <StatCounter value={5000} label="Children Educated" delay={100} />
-          <StatCounter value={1200} label="Women Empowered" delay={300} />
-          <StatCounter value={3500} label="Households Supported" delay={500} />
-          <StatCounter value={12} label="Years of Service" suffix="" delay={700} />
+          <StatCounter value={500} label="Children Educated" delay={100} />
+          <StatCounter value={650} label="Women Empowered" delay={300} />
+          <StatCounter value={200} label="Households Supported" delay={500} />
+          <StatCounter value={18} label="Years of Service" suffix="" delay={700} />
         </div>
         
         <div className="mt-16 bg-white p-6 rounded-lg shadow-md animate-fade-in opacity-0" style={{ animationDelay: '0.5s' }}>
@@ -91,11 +91,11 @@ const Impact: React.FC = () => {
             </div>
             <div className="p-3 bg-pink-50 rounded-lg text-center">
               <div className="font-bold text-pink-500 text-xl mb-1">SDG 5</div>
-              <div className="text-sm">Gender Equality</div>
+              <div className="text-sm">Women Empowermnet</div>
             </div>
             <div className="p-3 bg-yellow-50 rounded-lg text-center">
               <div className="font-bold text-jatan-yellow text-xl mb-1">SDG 8</div>
-              <div className="text-sm">Decent Work</div>
+              <div className="text-sm">Economic Growth</div>
             </div>
           </div>
         </div>
