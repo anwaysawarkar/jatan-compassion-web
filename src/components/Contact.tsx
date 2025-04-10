@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
+import { Mail, Phone, MapPin, Clock } from "lucide-react";
 
 interface FormData {
   name: string;
@@ -18,7 +19,7 @@ const Contact: React.FC = () => {
     name: "",
     email: "",
     message: "",
-    type: "message" // default type
+    type: "message"
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
@@ -56,7 +57,6 @@ const Contact: React.FC = () => {
         variant: "default",
       });
 
-      // Reset form after successful submission
       setFormData({
         name: "",
         email: "",
@@ -80,69 +80,120 @@ const Contact: React.FC = () => {
         <div className="container-custom">
           <h2 className="section-heading">Get in Touch</h2>
 
-          <div className="grid md:grid-cols-2 gap-10">
-            {/* Left Info Panel (unchanged) */}
+          <div className="grid md:grid-cols-2 gap-10 items-start"> {/* Changed to items-start */}
+            {/* Left Info Panel */}
             <div className="animate-slide-in opacity-0" style={{ animationDelay: "0.2s" }}>
-              {/* ... existing contact info ... */}
+              <div className="bg-gray-50 p-6 rounded-lg shadow-inner h-full flex flex-col">
+                <h3 className="text-2xl font-semibold mb-6 text-jatan-darkBlue">Contact Information</h3>
+                <div className="space-y-5 flex-grow">
+                  <div className="flex items-start">
+                    <div className="bg-jatan-orange/20 p-2 rounded-full mr-4">
+                      <Mail className="h-5 w-5 text-jatan-orange" />
+                    </div>
+                    <div>
+                      <h4 className="font-medium text-gray-800">Email</h4>
+                      <p className="text-gray-600">vp_62@reddifmail.com</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start">
+                    <div className="bg-jatan-orange/20 p-2 rounded-full mr-4">
+                      <Phone className="h-5 w-5 text-jatan-orange" />
+                    </div>
+                    <div>
+                      <h4 className="font-medium text-gray-800">Phone</h4>
+                      <p className="text-gray-600">+91 93723 10109</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start">
+                    <div className="bg-jatan-orange/20 p-2 rounded-full mr-4">
+                      <MapPin className="h-5 w-5 text-jatan-orange" />
+                    </div>
+                    <div>
+                      <h4 className="font-medium text-gray-800">Address</h4>
+                      <p className="text-gray-600">
+                        JATAN Sanstha<br />
+                        59 Ingole Layout, Mankapur Ring Rd<br />
+                        near Kawasaki Motorcycle, New Mankapur, Nagpur, Maharashtra 440030
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start">
+                    <div className="bg-jatan-orange/20 p-2 rounded-full mr-4">
+                      <Clock className="h-5 w-5 text-jatan-orange" />
+                    </div>
+                    <div>
+                      <h4 className="font-medium text-gray-800">Working Hours</h4>
+                      <p className="text-gray-600">
+                        Monday - Saturday: 11:30AM - 8PM<br />
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
             {/* Right Form Panel */}
             <div className="animate-slide-in opacity-0" style={{ animationDelay: "0.4s" }}>
-              <h3 className="text-2xl font-semibold mb-4 text-jatan-darkBlue">Send a Message</h3>
-              <form className="space-y-4" onSubmit={handleSubmit}>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="bg-white p-6 rounded-lg shadow-inner h-full"> {/* Added wrapper div */}
+                <h3 className="text-2xl font-semibold mb-4 text-jatan-darkBlue">Send a Message</h3>
+                <form className="space-y-4" onSubmit={handleSubmit}>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+                        Name
+                      </label>
+                      <Input
+                          name="name"
+                          id="name"
+                          value={formData.name}
+                          onChange={handleChange}
+                          placeholder="Your name"
+                          required
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                        Email
+                      </label>
+                      <Input
+                          name="email"
+                          id="email"
+                          type="email"
+                          value={formData.email}
+                          onChange={handleChange}
+                          placeholder="Your email"
+                          required
+                      />
+                    </div>
+                  </div>
+
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
-                      Name
+                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
+                      Message
                     </label>
-                    <Input
-                        name="name"
-                        id="name"
-                        value={formData.name}
+                    <Textarea
+                        name="message"
+                        id="message"
+                        value={formData.message}
                         onChange={handleChange}
-                        placeholder="Your name"
+                        placeholder="Your message"
+                        rows={5}
                         required
                     />
                   </div>
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                      Email
-                    </label>
-                    <Input
-                        name="email"
-                        id="email"
-                        type="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        placeholder="Your email"
-                        required
-                    />
-                  </div>
-                </div>
 
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
-                    Message
-                  </label>
-                  <Textarea
-                      name="message"
-                      id="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      placeholder="Your message"
-                      rows={5}
-                      required
-                  />
-                </div>
-
-                <Button
-                    type="submit"
-                    className="bg-jatan-orange hover:bg-jatan-yellow text-white"
-                    disabled={isSubmitting}
-                >
-                  {isSubmitting ? "Sending..." : "Send Message"}
-                </Button>
-              </form>
+                  <Button
+                      type="submit"
+                      className="bg-jatan-orange hover:bg-jatan-yellow text-white"
+                      disabled={isSubmitting}
+                  >
+                    {isSubmitting ? "Sending..." : "Send Message"}
+                  </Button>
+                </form>
+              </div>
             </div>
           </div>
         </div>

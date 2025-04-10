@@ -16,6 +16,32 @@ const Volunteer: React.FC = () => {
     const form = e.currentTarget as HTMLFormElement;
     const formData = new FormData(form);
 
+    // Email validation
+    const email = formData.get('email') as string;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      toast({
+        title: "Invalid Email",
+        description: "Please enter a valid email address",
+        variant: "destructive",
+      });
+      setIsSubmitting(false);
+      return;
+    }
+
+    // Phone number validation (Indian format)
+    const phone = formData.get('phone') as string;
+    const phoneRegex = /^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$/;
+    if (!phoneRegex.test(phone)) {
+      toast({
+        title: "Invalid Phone Number",
+        description: "Please enter a valid Indian phone number (10 digits starting with 7/8/9)",
+        variant: "destructive",
+      });
+      setIsSubmitting(false);
+      return;
+    }
+
     try {
       const response = await fetch(`${BASE_URL}/api/contact/send-message`, {
         method: 'POST',
@@ -24,9 +50,9 @@ const Volunteer: React.FC = () => {
         },
         body: JSON.stringify({
           name: formData.get('name'),
-          email: formData.get('email'),
+          email: email,
           message: `
-            Phone: ${formData.get('phone')}
+            Phone: ${phone}
             ${activeTab === 'group' ? `Organization: ${formData.get('organization')}\n` : ''}
             Interests: ${formData.get('interests')}
             Message: ${formData.get('message')}

@@ -14,6 +14,7 @@ export default function MaterialsPage() {
     password: '',
     error: ''
   });
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -140,7 +141,8 @@ export default function MaterialsPage() {
         "Page Setup",
         "Creating Tables",
         "Resume Making",
-        "Various Uses of Word"
+        "Various Tools of Word",
+        "Different Uses of Word"
       ]
     },
     {
@@ -224,21 +226,39 @@ export default function MaterialsPage() {
   return (
     <main className="min-h-screen bg-gradient-to-br from-blue-50 to-cyan-100 px-6 py-12 relative">
       <div className="absolute top-6 right-6 flex gap-4">
-        <Button onClick={() => navigate('/')} className="bg-white hover:bg-gray-200 text-gray-800 font-semibold px-4 py-2 rounded-lg">Home</Button>
+        <Button onClick={() => navigate('/')} className="bg-white hover:bg-gray-200 text-gray-800 font-semibold px-4 py-2 rounded-lg">
+          Home
+        </Button>
         {state.isLoggedIn && (
-          <Button onClick={logout} className="bg-red-100 hover:bg-red-200 text-red-700 font-semibold px-4 py-2 rounded-lg">Logout</Button>
+          <Button onClick={logout} className="bg-red-100 hover:bg-red-200 text-red-700 font-semibold px-4 py-2 rounded-lg">
+            Logout
+          </Button>
         )}
       </div>
 
       <div className="flex flex-col items-center">
         <h1 className="text-4xl md:text-5xl font-bold text-gray-800 text-center mb-4">
-          Access Teaching Materials
+          <br />Access Teaching Materials
         </h1>
 
         {!state.isLoggedIn ? (
           <div className="w-full max-w-md bg-white p-8 rounded-xl shadow-lg space-y-4">
-            <input type="text" name="username" placeholder="Username" value={state.username} onChange={handleInputChange} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" />
-            <input type="password" name="password" placeholder="Password" value={state.password} onChange={handleInputChange} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" />
+            <input
+              type="text"
+              name="username"
+              placeholder="Username"
+              value={state.username}
+              onChange={handleInputChange}
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+            />
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              value={state.password}
+              onChange={handleInputChange}
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+            />
             {state.error && <p className="text-red-500 text-sm">{state.error}</p>}
             <Button onClick={login} disabled={state.isLoading} className="w-full bg-red-500 hover:bg-red-600 text-white font-semibold py-2 rounded-lg">
               {state.isLoading ? 'Logging in...' : 'Login'}
@@ -248,7 +268,9 @@ export default function MaterialsPage() {
           <div className="w-full max-w-4xl p-8 rounded-2xl bg-white shadow-xl mt-6 space-y-8">
             {courseWeeks.map((week) => (
               <section key={week.week} className="mb-6">
-                <h3 className="text-xl font-semibold text-gray-700 mb-2">Week {week.week}: {week.title}</h3>
+                <h3 className="text-xl font-semibold text-gray-700 mb-2">
+                  Week {week.week}: {week.title}
+                </h3>
                 <ul className="list-disc list-inside text-gray-600 space-y-1">
                   {week.topics.map((topic, idx) => (
                     <li key={idx} className="hover:text-blue-600 transition-colors">{topic}</li>
