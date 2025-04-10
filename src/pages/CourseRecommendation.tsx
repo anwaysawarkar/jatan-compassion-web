@@ -1,7 +1,8 @@
-'use client'
+'use client';
 
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Client } from '@gradio/client';
 import { Button } from '@/components/ui/button';
 
 const CourseRecommendation: React.FC = () => {
@@ -18,13 +19,14 @@ const CourseRecommendation: React.FC = () => {
     e.preventDefault();
     setIsLoading(true);
     try {
-      const response = await fetch('http://localhost:3001/recommend', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ topic, skill_level: skillLevel, goals, use_ai: useAI }),
+      const client = await Client.connect('suryanshupaul/Course_Recommendation');
+      const result = await client.predict('/recommend_and_generate', {
+        topic,
+        skill_level: skillLevel,
+        goals,
+        use_ai: useAI,
       });
-      const data = await response.json();
-      const parsed = data[1]?.split('\n').filter((line: string) => line.trim() !== '');
+      const parsed = result.data[1]?.split('\n').filter((line: string) => line.trim() !== '');
       setRecommendations(parsed || []);
     } catch (error) {
       console.error('Error fetching recommendations:', error);
