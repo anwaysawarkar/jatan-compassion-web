@@ -1,6 +1,7 @@
 import express from 'express';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
+import cors from 'cors';
 
 dotenv.config();
 
@@ -19,7 +20,7 @@ const authenticateToken = (req, res, next) => {
 };
 
 // Login Route
-router.post('/login', (req, res) => {
+router.post('/login', cors(), (req, res) => {
   const { username, password } = req.body;
 
   const adminUsername = "jatan";
@@ -34,7 +35,7 @@ router.post('/login', (req, res) => {
 });
 
 // Token Verification Route
-router.get('/verify', authenticateToken, (req, res) => {
+router.get('/verify', cors(), authenticateToken, (req, res) => {
   // If middleware passes, the token is valid
   res.json({
     success: true,
