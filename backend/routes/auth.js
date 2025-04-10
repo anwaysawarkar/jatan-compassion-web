@@ -6,22 +6,13 @@ dotenv.config();
 
 const router = express.Router();
 
-// Middleware to Protect Routes
+// Middleware to Protect Routes - MOVED TO TOP
 const authenticateToken = (req, res, next) => {
   const token = req.header('Authorization')?.split(' ')[1];
-  console.log('🔒 Received token:', token);
+  if (!token) return res.sendStatus(401);
 
-  if (!token) {
-    console.log('❌ No token provided');
-    return res.sendStatus(401);
-  }
-
-  jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
-    if (err) {
-      console.log('❌ Token verification failed:', err.message);
-      return res.sendStatus(403);
-    }
-    console.log('✅ Token verified, user:', user);
+  jwt.verify(token, "089a30a0557cf29b58801f0f7a18f163db519245e8e79906e1c0f2e16ee3c587", (err, user) => {
+    if (err) return res.sendStatus(403);
     req.user = user;
     next();
   });
@@ -30,25 +21,21 @@ const authenticateToken = (req, res, next) => {
 // Login Route
 router.post('/login', (req, res) => {
   const { username, password } = req.body;
-  console.log('📥 Login attempt:', { username, password });
 
-  const adminUsername = process.env.ADMIN_USERNAME;
-  const adminPassword = process.env.ADMIN_PASSWORD;
-  console.log('🔐 Admin credentials:', { adminUsername, adminPassword });
+  const adminUsername = "jatan";
+  const adminPassword = "password";
 
   if (username === adminUsername && password === adminPassword) {
     const token = jwt.sign({ username }, process.env.JWT_SECRET, { expiresIn: '1h' });
-    console.log('✅ Login successful, token generated:', token);
     res.json({ success: true, token, message: 'Login successful' });
   } else {
-    console.log('❌ Invalid credentials');
     res.status(401).json({ success: false, message: 'Invalid credentials' });
   }
 });
 
 // Token Verification Route
 router.get('/verify', authenticateToken, (req, res) => {
-  console.log('🔍 Token verified route accessed by:', req.user);
+  // If middleware passes, the token is valid
   res.json({
     success: true,
     user: req.user,
