@@ -10,14 +10,7 @@ const app = express();
 // Middleware
 app.use(express.json());
 
-const allowedOrigins = [
-  'https://jatan-ngo-webproject-1.onrender.com/' // replace with your actual frontend domain
-];
-
-app.use(cors({
-  origin: allowedOrigins,
-  credentials: true // only if you're using cookies or auth headers
-}));
+app.use(cors());
 
 // Routes
 app.use('/api/auth', authRoutes);
