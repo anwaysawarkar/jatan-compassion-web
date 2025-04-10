@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 
-const API_BASE_URL = 'http://localhost:5000';
+const API_BASE_URL = 'https://jatan-sanstha.onrender.com';
 
 export default function MaterialsPage() {
   const [state, setState] = useState({
