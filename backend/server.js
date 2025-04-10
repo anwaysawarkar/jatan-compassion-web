@@ -15,6 +15,6 @@ app.use(express.json());
 app.use('/api/auth', authRoutes);
 app.use('/api/contact', contactRoutes);
 
-app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
+app.listen(process.env.PORT, () => {
+  console.log(`🚀 Server running on http://localhost:${process.env.PORT || 3000}`);
 });
