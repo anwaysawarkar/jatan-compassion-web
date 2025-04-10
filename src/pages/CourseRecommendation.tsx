@@ -5,12 +5,15 @@ import { useNavigate } from 'react-router-dom';
 import { Client } from '@gradio/client';
 import { Button } from '@/components/ui/button';
 
+// Define types
+type ApiResponse = [string, string]; // [roadmap, recommendations]
+
 const CourseRecommendation: React.FC = () => {
   const [topic, setTopic] = useState('');
   const [skillLevel, setSkillLevel] = useState('Beginner');
   const [goals, setGoals] = useState('');
   const [useAI, setUseAI] = useState(true);
-  const [roadmap, setRoadmap] = useState('');
+  const [roadmap, setRoadmap] = useState<string>('');
   const [recommendations, setRecommendations] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -21,6 +24,7 @@ const CourseRecommendation: React.FC = () => {
     setIsLoading(true);
     try {
       const client = await Client.connect('suryanshupaul/Course_Recommendation');
+      
       const result = await client.predict('/recommend_and_generate', {
         topic,
         skill_level: skillLevel,
@@ -28,11 +32,14 @@ const CourseRecommendation: React.FC = () => {
         use_ai: useAI,
       });
       
+      // Type assertion to ensure TypeScript understands the structure
+      const data = result.data as ApiResponse;
+      
       // Handle the first element (roadmap)
-      setRoadmap(result.data[0] || '');
+      setRoadmap(data[0] || '');
       
       // Handle the second element (recommended courses)
-      const parsed = result.data[1]?.split('\n').filter((line: string) => line.trim() !== '');
+      const parsed = data[1]?.split('\n').filter((line: string) => line.trim() !== '');
       setRecommendations(parsed || []);
     } catch (error) {
       console.error('Error fetching recommendations:', error);
