@@ -7,10 +7,10 @@ import { Button } from "@/components/ui/button";
 const Hero: React.FC = () => {
   const [currentImage, setCurrentImage] = useState(0);
   const images = [
-    "src/images/image1.png",
-    "src/images/image2.png",
-    "src/images/image3.png",
-    "src/images/image4.png"
+      "images/image1.png",
+      "images/image2.png",
+      "images/image3.png",
+      "images/image4.png"
   ];
 
   useEffect(() => {
