@@ -12,6 +12,7 @@ interface FormData {
 }
 
 const BASE_URL = 'http://localhost:5000';
+
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({
     name: "",
