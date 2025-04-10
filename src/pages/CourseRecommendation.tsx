@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Client } from '@gradio/client';
 import { Button } from '@/components/ui/button';
@@ -12,43 +12,57 @@ const CourseRecommendation: React.FC = () => {
   const [useAI, setUseAI] = useState(true);
   const [recommendations, setRecommendations] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [client, setClient] = useState<Client | null>(null);
 
   const navigate = useNavigate();
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  // Initialize client once and reuse it
+  const initializeClient = useCallback(async () => {
+    if (!client) {
+      const initializedClient = await Client.connect('suryanshupaul/Course_Recommendation');
+      setClient(initializedClient);
+      return initializedClient;
+    }
+    return client;
+  }, [client]);
+
+  const handleSubmit = useCallback(async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsLoading(true);
-    setRecommendations([]); // Clear previous recommendations
     
+    // Early return if required fields are empty
+    if (!topic.trim()) {
+      setRecommendations(['Please enter a topic to get recommendations']);
+      return;
+    }
+
+    setIsLoading(true);
+    setRecommendations([]);
+
     try {
-      const client = await Client.connect('suryanshupaul/Course_Recommendation');
-      const result = await client.predict('/recommend_and_generate', {
-        topic,
+      const currentClient = await initializeClient();
+      const result = await currentClient.predict('/recommend_and_generate', {
+        topic: topic.trim(),
         skill_level: skillLevel,
-        goals,
+        goals: goals.trim(),
         use_ai: useAI,
       });
-      
-      // The API returns a list of 2 strings:
-      // [0] - "Your Learning Roadmap" content (we'll ignore this one)
-      // [1] - "Recommended Courses" content
-      if (Array.isArray(result.data) && result.data.length >= 2) {
+
+      // Optimized parsing of the API response
+      if (Array.isArray(result.data) && result.data.length >= 2 && typeof result.data[1] === 'string') {
         const recommendedCourses = result.data[1]
           .split('\n')
           .filter(line => line.trim() !== '');
         
         setRecommendations(recommendedCourses.length > 0 ? recommendedCourses : 
-          ['No course recommendations found. Please try different parameters.']);
-      } else {
-        setRecommendations(['Unexpected response format from the API.']);
+          ['No course recommendations found for your criteria.']);
       }
     } catch (error) {
-      console.error('Error fetching recommendations:', error);
-      setRecommendations(['Failed to fetch recommendations. Please try again later.']);
+      console.error('API Error:', error);
+      setRecommendations(['Failed to load recommendations. Please try again.']);
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [topic, skillLevel, goals, useAI, initializeClient]);
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-green-50 to-teal-100 px-6 py-12">
