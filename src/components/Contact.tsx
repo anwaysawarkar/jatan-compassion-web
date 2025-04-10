@@ -11,7 +11,7 @@ interface FormData {
   type?: string;
 }
 
-const BASE_URL = 'https://jatan-ngo-webproject.onrender.com';
+const BASE_URL = 'https://jatan-sanstha.onrender.com';
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({
