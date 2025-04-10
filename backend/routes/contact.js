@@ -21,6 +21,11 @@ router.post('/send-message', async (req, res) => {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASS,
     },
+
+    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+  console.error('Email user or password is not defined.');
+  // Handle the error appropriately
+}
   });
 
   // Determine subject based on form type
