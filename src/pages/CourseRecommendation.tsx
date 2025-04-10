@@ -18,6 +18,8 @@ const CourseRecommendation: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
+    setRecommendations([]); // Clear previous recommendations
+    
     try {
       const client = await Client.connect('suryanshupaul/Course_Recommendation');
       const result = await client.predict('/recommend_and_generate', {
@@ -26,13 +28,26 @@ const CourseRecommendation: React.FC = () => {
         goals,
         use_ai: useAI,
       });
-      const parsed = result.data[1]?.split('\n').filter((line: string) => line.trim() !== '');
-      setRecommendations(parsed || []);
+      
+      // The API returns a list of 2 strings:
+      // [0] - "Your Learning Roadmap" content (we'll ignore this one)
+      // [1] - "Recommended Courses" content
+      if (Array.isArray(result.data) && result.data.length >= 2) {
+        const recommendedCourses = result.data[1]
+          .split('\n')
+          .filter(line => line.trim() !== '');
+        
+        setRecommendations(recommendedCourses.length > 0 ? recommendedCourses : 
+          ['No course recommendations found. Please try different parameters.']);
+      } else {
+        setRecommendations(['Unexpected response format from the API.']);
+      }
     } catch (error) {
       console.error('Error fetching recommendations:', error);
-      setRecommendations(['Failed to fetch recommendations. Try again later.']);
+      setRecommendations(['Failed to fetch recommendations. Please try again later.']);
+    } finally {
+      setIsLoading(false);
     }
-    setIsLoading(false);
   };
 
   return (
@@ -103,7 +118,11 @@ const CourseRecommendation: React.FC = () => {
           </Button>
         </form>
 
-        {recommendations.length > 0 && (
+        {isLoading ? (
+          <div className="mt-10 text-center">
+            <p className="text-gray-700">Loading recommendations...</p>
+          </div>
+        ) : recommendations.length > 0 && (
           <div className="mt-10">
             <h2 className="text-2xl font-semibold text-gray-800 mb-4">Recommended Courses:</h2>
             <ul className="list-disc list-inside space-y-2 text-gray-700">
