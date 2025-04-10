@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { HandHeart, Users, CalendarCheck, Award } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 
-const BASE_URL = 'http://localhost:5000';
+const BASE_URL = 'https://jatan-ngo-webproject.onrender.com';
 const Volunteer: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'individual' | 'group'>('individual');
   const [isSubmitting, setIsSubmitting] = useState(false);
