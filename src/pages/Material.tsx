@@ -115,110 +115,120 @@ export default function MaterialsPage() {
   const courseWeeks = [
     {
       week: 1,
-      title: "Basic",
+      title: 'Basic',
+      pdfUrl: '/ppt/Week_1_Engaging_Basic_Computer_Concepts.pdf',
       topics: [
-        "Introduction to Computer and its parts",
-        "Multimedia Tools – Input & Output Devices",
-        "Accessories: Paint, Notepad, WordPad, Calculator, etc.",
-        "Operating System",
-        "Computer Precautions"
+        'Introduction to Computer and its parts',
+        'Multimedia Tools – Input & Output Devices',
+        'Accessories: Paint, Notepad, WordPad, Calculator, etc.',
+        'Operating System',
+        'Computer Precautions'
       ]
     },
     {
       week: 2,
-      title: "Microsoft Word Part-1",
+      title: 'Microsoft Word Part-1',
+      pdfUrl: 'ppt/Microsoft Word Basics2.ppt',
       topics: [
-        "Introduction to Microsoft Word",
-        "Opening, Editing, Saving & Exiting the Document",
-        "Font, Insert Menu, Home Menu, View Menu, etc.",
-        "Print, Print Preview, Print Setting"
+        'Introduction to Microsoft Word',
+        'Opening, Editing, Saving & Exiting the Document',
+        'Font, Insert Menu, Home Menu, View Menu, etc.',
+        'Print, Print Preview, Print Setting'
       ]
     },
     {
       week: 3,
-      title: "Microsoft Word Part-2",
+      title: 'Microsoft Word Part-2',
+      pdfUrl: 'ppt/Microsoft Word Basics2.ppt',
       topics: [
-        "Page Setup",
-        "Creating Tables",
-        "Resume Making",
-        "Various Tools of Word",
-        "Different Uses of Word"
+        'Page Setup',
+        'Creating Tables',
+        'Resume Making',
+        'Various Tools of Word',
+        'Different Uses of Word'
       ]
     },
     {
       week: 4,
-      title: "Microsoft Excel Basics",
+      title: 'Microsoft Excel Basics',
+      pdfUrl: 'ppt/Master MS Excel.pdf',
       topics: [
-        "Introduction to Microsoft Excel",
-        "Basic Spreadsheet Concept",
-        "Starting Excel",
-        "Working with Workbook",
-        "Using Workbook",
-        "Entering and Editing Data, Using Filters"
+        'Introduction to Microsoft Excel',
+        'Basic Spreadsheet Concept',
+        'Starting Excel',
+        'Working with Workbook',
+        'Using Workbook',
+        'Entering and Editing Data, Using Filters'
       ]
     },
     {
       week: 5,
-      title: "Excel Advanced",
+      title: 'Excel Advanced',
+      pdfUrl: 'ppt/Master MS Excel.pdf',
       topics: [
-        "Formatting a Worksheet",
-        "Working with Range of Cells",
-        "Functions",
-        "Graphs and Charts",
-        "Printing Excel Worksheet"
+        'Formatting a Worksheet',
+        'Working with Range of Cells',
+        'Functions',
+        'Graphs and Charts',
+        'Printing Excel Worksheet'
       ]
     },
     {
       week: 6,
-      title: "Microsoft PowerPoint",
+      title: 'Microsoft PowerPoint',
+      pdfUrl: 'ppt/Master MS Excel.pdf',
       topics: [
-        "Introduction to PowerPoint",
-        "Creating Presentation",
-        "Editing, Working with Slides & Slideshow",
-        "Drawing and Working with Objects",
-        "Making Notes Pages",
-        "Printing Presentation",
-        "Printing, Scanning, Storing"
+        'Introduction to PowerPoint',
+        'Creating Presentation',
+        'Editing, Working with Slides & Slideshow',
+        'Drawing and Working with Objects',
+        'Making Notes Pages',
+        'Printing Presentation',
+        'Printing, Scanning, Storing'
       ]
     },
     {
       week: 7,
-      title: "Internet & Cyber Security",
+      title: 'Internet & Cyber Security',
+      pdfUrl: 'ppt/Master MS Excel.pdf',
       topics: [
-        "Introduction to Internet",
-        "Search Engines, Browsing & Surfing",
-        "Social Networking Sites: YouTube, Facebook",
-        "Emails: Account Setup, Sending & Receiving, Attachments",
-        "Viruses – Security, Websites",
-        "Pen Drives, CD/DVD, Bluetooth – Uses & Cautions",
-        "Cyber Scam Awareness: Phishing, Malware, Stalking"
+        'Introduction to Internet',
+        'Search Engines, Browsing & Surfing',
+        'Social Networking Sites: YouTube, Facebook',
+        'Emails: Account Setup, Sending & Receiving, Attachments',
+        'Viruses – Security, Websites',
+        'Pen Drives, CD/DVD, Bluetooth – Uses & Cautions',
+        'Cyber Scam Awareness: Phishing, Malware, Stalking'
       ]
     },
     {
       week: 8,
-      title: "Digital Services & eCommerce",
+      title: 'Digital Services & eCommerce',
+      pdfUrl: 'ppt/Master MS Excel.pdf',
       topics: [
-        "e-Commerce: Online Shopping (Amazon, Snapdeal)",
-        "Online Booking: Railways, Flights, Bus, Cinema",
-        "Online Form Fillings (e.g., Google Forms)",
-        "Online Banking & Precautions",
-        "Digital Payments: UPI, Paytm, Debit/Credit Cards"
+        'e-Commerce: Online Shopping (Amazon, Snapdeal)',
+        'Online Booking: Railways, Flights, Bus, Cinema',
+        'Online Form Fillings (e.g., Google Forms)',
+        'Online Banking & Precautions',
+        'Digital Payments: UPI, Paytm, Debit/Credit Cards'
       ]
     },
     {
       week: 9,
-      title: "Generative AI",
+      title: 'Generative AI',
+      pdfUrl: 'ppt/Master MS Excel.pdf',
       topics: [
-        "Introduction to Generative AI",
-        "Usage of ChatGPT, Gemini & DeepSeek"
+        'Introduction to Generative AI',
+        'Usage of ChatGPT, Gemini & DeepSeek'
       ]
     },
     {
       week: 10,
-      title: "Career in Computer",
+      title: 'Career in Computer',
+      pdfUrl: 'ppt/Master MS Excel.pdf',
       topics: [
-        "Knowledge about other courses: DTP, TALLY, GST, ANIMATION, PHOTOSHOP, HARDWARE, NETWORKING",
-        "Practice Session & Doubt Clearing"
+        'Knowledge about other courses: DTP, TALLY, GST, ANIMATION, PHOTOSHOP, HARDWARE, NETWORKING',
+        'Practice Session & Doubt Clearing'
       ]
     }
   ];
@@ -238,7 +248,7 @@ export default function MaterialsPage() {
 
       <div className="flex flex-col items-center">
         <h1 className="text-4xl md:text-5xl font-bold text-gray-800 text-center mb-4">
-          <br />Access Teaching Materials
+          Access Teaching Materials
         </h1>
 
         {!state.isLoggedIn ? (
@@ -265,18 +275,45 @@ export default function MaterialsPage() {
             </Button>
           </div>
         ) : (
-          <div className="w-full max-w-4xl p-8 rounded-2xl bg-white shadow-xl mt-6 space-y-8">
+          <div className="w-full max-w-6xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
             {courseWeeks.map((week) => (
-              <section key={week.week} className="mb-6">
-                <h3 className="text-xl font-semibold text-gray-700 mb-2">
-                  Week {week.week}: {week.title}
-                </h3>
-                <ul className="list-disc list-inside text-gray-600 space-y-1">
-                  {week.topics.map((topic, idx) => (
-                    <li key={idx} className="hover:text-blue-600 transition-colors">{topic}</li>
-                  ))}
-                </ul>
-              </section>
+              <div
+                key={week.week}
+                className="bg-gradient-to-tr from-blue-100 via-white to-blue-50 border border-blue-200 rounded-2xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300 flex flex-col justify-between"
+              >
+                <div>
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="bg-blue-200 text-blue-800 p-3 rounded-full">
+                      <svg className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6l4 2" />
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 4a8 8 0 110 16 8 8 0 010-16z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-bold text-gray-800">
+                        Week {week.week}
+                      </h3>
+                      <p className="text-sm text-gray-500">{week.title}</p>
+                    </div>
+                  </div>
+                  <ul className="list-disc list-inside text-gray-600 space-y-1 pl-2 mb-4">
+                    {week.topics.map((topic, idx) => (
+                      <li key={idx} className="hover:text-blue-700">{topic}</li>
+                    ))}
+                  </ul>
+                </div>
+
+                {week.pdfUrl && (
+                  <a
+                    href={week.pdfUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-4 inline-block text-center bg-blue-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-green-500 transition-colors duration-200"
+                  >
+                    View PDF
+                  </a>
+                )}
+              </div>
             ))}
           </div>
         )}
