@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Client } from '@gradio/client';
 import { Button } from '@/components/ui/button';
@@ -10,59 +10,37 @@ const CourseRecommendation: React.FC = () => {
   const [skillLevel, setSkillLevel] = useState('Beginner');
   const [goals, setGoals] = useState('');
   const [useAI, setUseAI] = useState(true);
+  const [roadmap, setRoadmap] = useState('');
   const [recommendations, setRecommendations] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [client, setClient] = useState<Client | null>(null);
 
   const navigate = useNavigate();
 
-  // Initialize client once and reuse it
-  const initializeClient = useCallback(async () => {
-    if (!client) {
-      const initializedClient = await Client.connect('suryanshupaul/Course_Recommendation');
-      setClient(initializedClient);
-      return initializedClient;
-    }
-    return client;
-  }, [client]);
-
-  const handleSubmit = useCallback(async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Early return if required fields are empty
-    if (!topic.trim()) {
-      setRecommendations(['Please enter a topic to get recommendations']);
-      return;
-    }
-
     setIsLoading(true);
-    setRecommendations([]);
-
     try {
-      const currentClient = await initializeClient();
-      const result = await currentClient.predict('/recommend_and_generate', {
-        topic: topic.trim(),
+      const client = await Client.connect('suryanshupaul/Course_Recommendation');
+      const result = await client.predict('/recommend_and_generate', {
+        topic,
         skill_level: skillLevel,
-        goals: goals.trim(),
+        goals,
         use_ai: useAI,
       });
-
-      // Optimized parsing of the API response
-      if (Array.isArray(result.data) && result.data.length >= 2 && typeof result.data[1] === 'string') {
-        const recommendedCourses = result.data[1]
-          .split('\n')
-          .filter(line => line.trim() !== '');
-        
-        setRecommendations(recommendedCourses.length > 0 ? recommendedCourses : 
-          ['No course recommendations found for your criteria.']);
-      }
+      
+      // Handle the first element (roadmap)
+      setRoadmap(result.data[0] || '');
+      
+      // Handle the second element (recommended courses)
+      const parsed = result.data[1]?.split('\n').filter((line: string) => line.trim() !== '');
+      setRecommendations(parsed || []);
     } catch (error) {
-      console.error('API Error:', error);
-      setRecommendations(['Failed to load recommendations. Please try again.']);
-    } finally {
-      setIsLoading(false);
+      console.error('Error fetching recommendations:', error);
+      setRoadmap('');
+      setRecommendations(['Failed to fetch recommendations. Try again later.']);
     }
-  }, [topic, skillLevel, goals, useAI, initializeClient]);
+    setIsLoading(false);
+  };
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-green-50 to-teal-100 px-6 py-12">
@@ -132,11 +110,16 @@ const CourseRecommendation: React.FC = () => {
           </Button>
         </form>
 
-        {isLoading ? (
-          <div className="mt-10 text-center">
-            <p className="text-gray-700">Loading recommendations...</p>
+        {roadmap && (
+          <div className="mt-10">
+            <h2 className="text-2xl font-semibold text-gray-800 mb-4">Your Learning Roadmap:</h2>
+            <div className="prose max-w-none text-gray-700">
+              {roadmap}
+            </div>
           </div>
-        ) : recommendations.length > 0 && (
+        )}
+
+        {recommendations.length > 0 && (
           <div className="mt-10">
             <h2 className="text-2xl font-semibold text-gray-800 mb-4">Recommended Courses:</h2>
             <ul className="list-disc list-inside space-y-2 text-gray-700">
