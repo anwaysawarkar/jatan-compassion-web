@@ -53,7 +53,7 @@ const CourseRecommendation: React.FC = () => {
     <main className="min-h-screen bg-gradient-to-br from-green-50 to-teal-100 px-6 py-12">
       <div className="absolute top-6 right-6 flex gap-4">
         <Button onClick={() => navigate('/')} className="bg-white hover:bg-gray-200 text-gray-800 font-semibold px-4 py-2 rounded-lg">Home</Button>
-        <Button onClick={() => navigate('/materials')} className="bg-blue-100 hover:bg-blue-200 text-blue-700 font-semibold px-4 py-2 rounded-lg">Back to Materials</Button>
+        <Button onClick={() => navigate('/material')} className="bg-blue-100 hover:bg-blue-200 text-blue-700 font-semibold px-4 py-2 rounded-lg">Back to Materials</Button>
       </div>
 
       <div className="max-w-4xl mx-auto bg-white p-8 rounded-2xl shadow-lg">

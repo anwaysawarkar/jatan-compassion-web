@@ -1,7 +1,6 @@
 import express from 'express';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
-import cors from 'cors';
 
 dotenv.config();
 
@@ -12,7 +11,7 @@ const authenticateToken = (req, res, next) => {
   const token = req.header('Authorization')?.split(' ')[1];
   if (!token) return res.sendStatus(401);
 
-  jwt.verify(token, "089a30a0557cf29b58801f0f7a18f163db519245e8e79906e1c0f2e16ee3c587", (err, user) => {
+  jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
     if (err) return res.sendStatus(403);
     req.user = user;
     next();
@@ -20,14 +19,14 @@ const authenticateToken = (req, res, next) => {
 };
 
 // Login Route
-router.post('/login', cors(), (req, res) => {
+router.post('/login', (req, res) => {
   const { username, password } = req.body;
 
-  const adminUsername = "jatan";
-  const adminPassword = "password";
+  const adminUsername = process.env.ADMIN_USERNAME;
+  const adminPassword = process.env.ADMIN_PASSWORD;
 
   if (username === adminUsername && password === adminPassword) {
-    const token = jwt.sign({ username }, "089a30a0557cf29b58801f0f7a18f163db519245e8e79906e1c0f2e16ee3c587", { expiresIn: '1h' });
+    const token = jwt.sign({ username }, process.env.JWT_SECRET, { expiresIn: '1h' });
     res.json({ success: true, token, message: 'Login successful' });
   } else {
     res.status(401).json({ success: false, message: 'Invalid credentials' });
@@ -35,7 +34,7 @@ router.post('/login', cors(), (req, res) => {
 });
 
 // Token Verification Route
-router.get('/verify', cors(), authenticateToken, (req, res) => {
+router.get('/verify', authenticateToken, (req, res) => {
   // If middleware passes, the token is valid
   res.json({
     success: true,
