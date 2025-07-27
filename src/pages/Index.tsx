@@ -8,6 +8,7 @@ import Impact from '@/components/Impact';
 import Members from '@/components/Members';
 import Testimonials from '@/components/Testimonials';
 import Volunteer from '@/components/Volunteer';
+import Donation from '@/components/Donation';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 
@@ -22,6 +23,7 @@ const Index: React.FC = () => {
       <Members />
       <Testimonials />
       <Volunteer />
+      <Donation />
       <Contact />
       <Footer />
     </div>
