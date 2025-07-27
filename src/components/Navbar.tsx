@@ -20,7 +20,6 @@ const Navbar: React.FC = () => {
             <a href="#programs" className="text-gray-700 hover:text-jatan-orange transition-colors">Programs</a>
             <Link to="/material" className="text-gray-700 hover:text-jatan-orange transition-colors">Material</Link>
             <a href="#impact" className="text-gray-700 hover:text-jatan-orange transition-colors">Impact</a>
-            <Link to="/recommendation" className="text-gray-700 hover:text-jatan-orange transition-colors">Recommendation</Link>
             <a href="#contact" className="text-gray-700 hover:text-jatan-orange transition-colors">Contact</a>
 
             {/* Updated Join Us Button */}
